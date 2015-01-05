@@ -48,6 +48,8 @@ public:
 
     void addPattern( FlashPattern &pPattern, unsigned int pNumberOfRepetitions);
 
+    void switchToPattern(unsigned int);
+
 private:
     void repeatPattern();
     void determineNextPattern();

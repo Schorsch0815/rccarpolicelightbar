@@ -31,6 +31,7 @@ void FlashPattern::addRow(unsigned int pPattern, unsigned int pDuration)
         m_Rows[m_NumberOfRows].duration = pDuration;
         ++m_NumberOfRows;
     }
+
     Serial.print( "Add pattern:");
     Serial.print(pPattern);
     Serial.print(", Duration:");
@@ -38,6 +39,7 @@ void FlashPattern::addRow(unsigned int pPattern, unsigned int pDuration)
     Serial.print(", Number of Rows:");
     Serial.print(m_NumberOfRows);
     Serial.print("\n");
+
 }
 
 void FlashPattern::restartFlashPattern()

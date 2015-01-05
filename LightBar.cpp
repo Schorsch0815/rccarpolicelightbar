@@ -95,11 +95,26 @@ void LightBar::getCurrentPattern(unsigned int &pattern)
         }
         else
         {
-//            Serial.print("Determine next pattern\n");
+//            Serial.print("Determine Next Pattern\n");
             determineNextPattern();
         }
     }
 }
+
+void LightBar::switchToPattern(unsigned int pPatternIdx)
+{
+    if (0 <= pPatternIdx && pPatternIdx <m_MaxFlashPattern)
+    {
+        m_CurrentPattern = pPatternIdx;
+        m_CurrentRepetition = 0;
+        m_PatternRepArray[m_CurrentPattern].pattern->restartFlashPattern();
+    }
+    else
+    {
+        setStatus(OFF);
+    }
+}
+
 
 void LightBar::loop(void)
 {
@@ -109,22 +124,21 @@ void LightBar::loop(void)
     {
         getCurrentPattern(pattern);
     }
-
 //    Serial.print("\nPattern:");
 //    Serial.print(pattern);
 
     for (unsigned int i = 0; i < m_NumberOfSegments; ++i)
     {
-/*        Serial.print( " i: ");
-        Serial.print(i);
-        Serial.print( " Pin: ");
-        Serial.print(m_PinArray[i]);
-        Serial.print( " : patter >> i ");
-        Serial.print((pattern >> i));
-        Serial.print( " : HIGH or LOW ");
-        Serial.print(((pattern >> i) & 0x1) ? HIGH : LOW);
-        Serial.print( " : ");
-*/        digitalWrite(m_PinArray[i], ((pattern >> i) & 0x1) ? HIGH : LOW);
+//        Serial.print( " i: ");
+//        Serial.print(i);
+//        Serial.print( " Pin: ");
+//        Serial.print(m_PinArray[i]);
+//        Serial.print( " : patter >> i ");
+//        Serial.print((pattern >> i));
+//        Serial.print( " : HIGH or LOW ");
+//        Serial.print(((pattern >> i) & 0x1) ? HIGH : LOW);
+//        Serial.print( " : ");
+        digitalWrite(m_PinArray[i], ((pattern >> i) & 0x1) ? HIGH : LOW);
     }
 }
 
