@@ -29,14 +29,14 @@ private:
         unsigned int duration;
     } PatternRow_t;
 
-    PatternRow_t *m_Rows;
+    PatternRow_t *mRows;
 
-    unsigned int m_NumberOfSegments;
-    unsigned int m_MaxRows;
-    unsigned int m_NumberOfRows;
+    unsigned int mNumberOfSegments;
+    unsigned int mMaxRows;
+    unsigned int mNumberOfRows;
 
-    unsigned int m_CurrentRow;
-    unsigned long m_LastStartTimestamp;
+    unsigned int mCurrentRow;
+    unsigned long mLastStartTimestamp;
 
 };
 

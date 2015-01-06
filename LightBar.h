@@ -43,7 +43,7 @@ public:
 
     LightBarStatus_t getStatus(void)
     {
-        return m_Status;
+        return mStatus;
     }
 
     void addPattern( FlashPattern &pPattern, unsigned int pNumberOfRepetitions);
@@ -61,17 +61,17 @@ private:
         unsigned int numberOfRepetitions;
     } FlashPatternRep_t;
 
-    unsigned int *m_PinArray;
-    unsigned int m_NumberOfSegments;
+    unsigned int *mPinArray;
+    unsigned int mNumberOfSegments;
 
-    FlashPatternRep_t *m_PatternRepArray;
-    unsigned int m_MaxFlashPattern;
-    unsigned int m_NumberOfFlashPattern;
+    FlashPatternRep_t *mPatternRepArray;
+    unsigned int mMaxFlashPattern;
+    unsigned int mNumberOfFlashPattern;
 
-    unsigned int m_CurrentPattern;
-    unsigned int m_CurrentRepetition;
+    unsigned int mCurrentPattern;
+    unsigned int mCurrentRepetition;
 
-    LightBarStatus_t m_Status;
+    LightBarStatus_t mStatus;
 
 };
 

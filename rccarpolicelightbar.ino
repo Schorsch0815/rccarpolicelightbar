@@ -9,29 +9,29 @@
 /*
  * traffic lightbar setup
  */
-unsigned int g_trafficLightBarPins[] =
+unsigned int gTrafficLightBarPins[] =
     { 14, 15, 16, 17, 18, 19 };
 
-LightBar g_trafficLightBar( 6, g_trafficLightBarPins, 4);
+LightBar gTrafficLightBar( 6, gTrafficLightBarPins, 4);
 
-FlashPattern g_trafficToLeftPattern(6,24);
-FlashPattern g_trafficToRightPattern(6,24);
-FlashPattern g_trafficSplitPattern(6,12);
-FlashPattern g_trafficAttentionPattern(6,2);
+FlashPattern gTrafficToLeftPattern(6,24);
+FlashPattern gTrafficToRightPattern(6,24);
+FlashPattern gTrafficSplitPattern(6,12);
+FlashPattern gTrafficAttentionPattern(6,2);
 
 
 /*
  * Emergency light bar setup
  */
-unsigned int g_emergencyLightBarPins[] =
+unsigned int gEmergencyLightBarPins[] =
     { 10, 9, 7, 6, 5, 4, 3, 2, 1, 0 };
 
-LightBar g_emergencyLightBar(10, g_emergencyLightBarPins, 4);
+LightBar gEmergencyLightBar(10, gEmergencyLightBarPins, 4);
 
 FlashPattern g_simplePattern(10, 2);
-FlashPattern g_wierdPattern1(10, 8);
-FlashPattern g_fastSimplePattern(10, 2);
-FlashPattern g_wierdPattern2(10, 8);
+FlashPattern gWierdPattern1(10, 8);
+FlashPattern gFastSimplePattern(10, 2);
+FlashPattern gWierdPattern2(10, 8);
 
 
 /*
@@ -48,7 +48,7 @@ const unsigned int g_EmergencyLightSwitchPin = 11;
 /*
  * pin for traffic pattern switch
  */
-const unsigned int g_TrafficLightSwitchPin = 12;
+const unsigned int gTrafficLightSwitchPin = 12;
 
 /*
  * pin for sirene switch
@@ -60,7 +60,7 @@ PinSwitch g_EmergencyLightSwitch(g_EmergencyLightSwitchPin);
 
 PinSwitch g_SirenSwitch(g_SirenSwitchPin);
 
-SteppingSwitch g_TrafficLightSwitch(5, g_TrafficLightSwitchPin, 300, 10);
+SteppingSwitch gTrafficLightSwitch(5, gTrafficLightSwitchPin, 300, 10);
 
 //The setup function is called once at startup of the sketch
 void setup()
@@ -82,7 +82,7 @@ void setup()
 
     g_SirenSwitch.setup();
 
-    g_TrafficLightSwitch.setup();
+    gTrafficLightSwitch.setup();
 }
 
 void setupTrafficToLeftPattern()
@@ -90,31 +90,31 @@ void setupTrafficToLeftPattern()
     /*
      * setup pattern "to left lane"
      */
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 1), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 1), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 1, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 1, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 1, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 1, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 1, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 1, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 0), 50);
-    g_trafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 150);
-    g_trafficLightBar.addPattern(g_trafficToLeftPattern, 0);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 1), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 1), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 1, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 1, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 1, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 1, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 1, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 1, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 0), 50);
+    gTrafficToLeftPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 150);
+    gTrafficLightBar.addPattern(gTrafficToLeftPattern, 0);
 }
 
 void setupTrafficToRightPattern()
@@ -122,31 +122,31 @@ void setupTrafficToRightPattern()
     /*
      * setup pattern "to right lane"
      */
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 1, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 1, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 1, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 1, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 1, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 1, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 1), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 1), 50);
-    g_trafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 150);
-    g_trafficLightBar.addPattern(g_trafficToRightPattern, 0);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 1, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 1, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 1, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 1, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 1, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 1, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 1), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 1), 50);
+    gTrafficToRightPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 150);
+    gTrafficLightBar.addPattern(gTrafficToRightPattern, 0);
 }
 
 void setupTrafficSplitPattern()
@@ -154,19 +154,19 @@ void setupTrafficSplitPattern()
     /*
      * setup pattern "split lanes"
      */
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 1, 1, 0, 0), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 1, 1, 0, 0), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 1, 0), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 1, 0), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 1), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 1), 70);
-    g_trafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 200);
-    g_trafficLightBar.addPattern(g_trafficSplitPattern, 0);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 1, 1, 0, 0), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 1, 1, 0, 0), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 1, 0), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(0, 1, 0, 0, 1, 0), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 1), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(1, 0, 0, 0, 0, 1), 70);
+    gTrafficSplitPattern.addRow(FLASH_ROW_6(0, 0, 0, 0, 0, 0), 200);
+    gTrafficLightBar.addPattern(gTrafficSplitPattern, 0);
 }
 
 void setupAttentionPattern()
@@ -174,9 +174,9 @@ void setupAttentionPattern()
     /*
      * setup pattern "attention"
      */
-    g_trafficAttentionPattern.addRow(FLASH_ROW_6(1, 0, 1, 0, 1, 0), 300);
-    g_trafficAttentionPattern.addRow(FLASH_ROW_6(0, 1, 0, 1, 0, 1), 300);
-    g_trafficLightBar.addPattern(g_trafficAttentionPattern, 0);
+    gTrafficAttentionPattern.addRow(FLASH_ROW_6(1, 0, 1, 0, 1, 0), 300);
+    gTrafficAttentionPattern.addRow(FLASH_ROW_6(0, 1, 0, 1, 0, 1), 300);
+    gTrafficLightBar.addPattern(gTrafficAttentionPattern, 0);
 }
 
 void setupTrafficLightBar(void)
@@ -202,7 +202,7 @@ void setupTrafficLightBar(void)
     /*
      * setup the lightbar
      */
-    g_trafficLightBar.setup();
+    gTrafficLightBar.setup();
 }
 
 
@@ -210,33 +210,33 @@ void setupEmergencyLightBar()
 {
     g_simplePattern.addRow(FLASH_ROW_10(0, 1, 0, 1, 0, 1, 0, 1, 0, 1), 300);
     g_simplePattern.addRow(FLASH_ROW_10(1, 0, 1, 0, 1, 0, 1, 0, 1, 0), 300);
-    g_emergencyLightBar.addPattern(g_simplePattern, 5);
+    gEmergencyLightBar.addPattern(g_simplePattern, 5);
 
-    g_wierdPattern1.addRow(FLASH_ROW_10(1, 0, 1, 0, 0, 0, 1, 0, 0, 1), 80);
-    g_wierdPattern1.addRow(FLASH_ROW_10(0, 1, 0, 0, 0, 1, 0, 1, 1, 0), 80);
-    g_wierdPattern1.addRow(FLASH_ROW_10(0, 0, 1, 0, 1, 1, 0, 1, 0, 0), 80);
-    g_wierdPattern1.addRow(FLASH_ROW_10(1, 0, 0, 1, 1, 0, 0, 0, 0, 1), 80);
-    g_wierdPattern1.addRow(FLASH_ROW_10(0, 1, 0, 1, 0, 1, 0, 0, 1, 0), 80);
-    g_wierdPattern1.addRow(FLASH_ROW_10(1, 0, 1, 0, 0, 0, 1, 1, 0, 1), 80);
-    g_wierdPattern1.addRow(FLASH_ROW_10(0, 1, 1, 0, 1, 0, 1, 0, 0, 1), 80);
-    g_wierdPattern1.addRow(FLASH_ROW_10(1, 0, 0, 1, 0, 1, 0, 0, 1, 0), 80);
-    g_emergencyLightBar.addPattern(g_wierdPattern1, 8);
+    gWierdPattern1.addRow(FLASH_ROW_10(1, 0, 1, 0, 0, 0, 1, 0, 0, 1), 80);
+    gWierdPattern1.addRow(FLASH_ROW_10(0, 1, 0, 0, 0, 1, 0, 1, 1, 0), 80);
+    gWierdPattern1.addRow(FLASH_ROW_10(0, 0, 1, 0, 1, 1, 0, 1, 0, 0), 80);
+    gWierdPattern1.addRow(FLASH_ROW_10(1, 0, 0, 1, 1, 0, 0, 0, 0, 1), 80);
+    gWierdPattern1.addRow(FLASH_ROW_10(0, 1, 0, 1, 0, 1, 0, 0, 1, 0), 80);
+    gWierdPattern1.addRow(FLASH_ROW_10(1, 0, 1, 0, 0, 0, 1, 1, 0, 1), 80);
+    gWierdPattern1.addRow(FLASH_ROW_10(0, 1, 1, 0, 1, 0, 1, 0, 0, 1), 80);
+    gWierdPattern1.addRow(FLASH_ROW_10(1, 0, 0, 1, 0, 1, 0, 0, 1, 0), 80);
+    gEmergencyLightBar.addPattern(gWierdPattern1, 8);
 
-    g_fastSimplePattern.addRow(FLASH_ROW_10(0, 1, 0, 1, 0, 1, 0, 1, 0, 1), 100);
-    g_fastSimplePattern.addRow(FLASH_ROW_10(1, 0, 1, 0, 1, 0, 1, 0, 1, 0), 100);
-    g_emergencyLightBar.addPattern(g_simplePattern, 5);
+    gFastSimplePattern.addRow(FLASH_ROW_10(0, 1, 0, 1, 0, 1, 0, 1, 0, 1), 100);
+    gFastSimplePattern.addRow(FLASH_ROW_10(1, 0, 1, 0, 1, 0, 1, 0, 1, 0), 100);
+    gEmergencyLightBar.addPattern(g_simplePattern, 5);
 
-    g_wierdPattern2.addRow(FLASH_ROW_10(0, 1, 0, 1, 0, 1, 0, 1, 0, 0 ), 80);
-    g_wierdPattern2.addRow(FLASH_ROW_10(0, 0, 0, 0, 1, 0, 1, 0, 0, 1 ), 80);
-    g_wierdPattern2.addRow(FLASH_ROW_10(1, 1, 0, 0, 1, 0, 0, 1, 0, 0 ), 80);
-    g_wierdPattern2.addRow(FLASH_ROW_10(1, 0, 1, 0, 0, 1, 0, 0, 1, 0 ), 80);
-    g_wierdPattern2.addRow(FLASH_ROW_10(0, 1, 0, 0, 0, 0, 1, 0, 1, 1 ), 80);
-    g_wierdPattern2.addRow(FLASH_ROW_10(0, 0, 1, 1, 1, 1, 0, 1, 0, 0 ), 80);
-    g_wierdPattern2.addRow(FLASH_ROW_10(1, 0, 0, 1, 0, 0, 1, 1, 0, 0 ), 80);
-    g_wierdPattern2.addRow(FLASH_ROW_10(0, 1, 1, 0, 0, 1, 0, 0, 1, 1 ), 80);
-    g_emergencyLightBar.addPattern(g_wierdPattern2, 12);
+    gWierdPattern2.addRow(FLASH_ROW_10(0, 1, 0, 1, 0, 1, 0, 1, 0, 0 ), 80);
+    gWierdPattern2.addRow(FLASH_ROW_10(0, 0, 0, 0, 1, 0, 1, 0, 0, 1 ), 80);
+    gWierdPattern2.addRow(FLASH_ROW_10(1, 1, 0, 0, 1, 0, 0, 1, 0, 0 ), 80);
+    gWierdPattern2.addRow(FLASH_ROW_10(1, 0, 1, 0, 0, 1, 0, 0, 1, 0 ), 80);
+    gWierdPattern2.addRow(FLASH_ROW_10(0, 1, 0, 0, 0, 0, 1, 0, 1, 1 ), 80);
+    gWierdPattern2.addRow(FLASH_ROW_10(0, 0, 1, 1, 1, 1, 0, 1, 0, 0 ), 80);
+    gWierdPattern2.addRow(FLASH_ROW_10(1, 0, 0, 1, 0, 0, 1, 1, 0, 0 ), 80);
+    gWierdPattern2.addRow(FLASH_ROW_10(0, 1, 1, 0, 0, 1, 0, 0, 1, 1 ), 80);
+    gEmergencyLightBar.addPattern(gWierdPattern2, 12);
 
-    g_emergencyLightBar.setup();
+    gEmergencyLightBar.setup();
 }
 
 
@@ -245,24 +245,24 @@ void loop()
 {
     g_EmergencyLightSwitch.refresh();
 
-    g_emergencyLightBar.setStatus((Switch::OFF == g_EmergencyLightSwitch.getState()) ? LightBar::OFF : LightBar::ON );
+    gEmergencyLightBar.setStatus((Switch::OFF == g_EmergencyLightSwitch.getState()) ? LightBar::OFF : LightBar::ON );
 
-    g_emergencyLightBar.loop();
+    gEmergencyLightBar.loop();
 
-    g_TrafficLightSwitch.refresh();
+    gTrafficLightSwitch.refresh();
 
-    unsigned int lCurrentTrafficStep = g_TrafficLightSwitch.getCurrentStep();
+    unsigned int lCurrentTrafficStep = gTrafficLightSwitch.getCurrentStep();
 
     if (0 == lCurrentTrafficStep)
     {
-        g_trafficLightBar.setStatus(LightBar::OFF);
+        gTrafficLightBar.setStatus(LightBar::OFF);
     }
     else
     {
-        g_trafficLightBar.setStatus(LightBar::ON);
-        g_trafficLightBar.switchToPattern(lCurrentTrafficStep-1);
+        gTrafficLightBar.setStatus(LightBar::ON);
+        gTrafficLightBar.switchToPattern(lCurrentTrafficStep-1);
     }
 
-    g_trafficLightBar.loop();
+    gTrafficLightBar.loop();
 }
 

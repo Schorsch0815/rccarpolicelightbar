@@ -13,23 +13,23 @@
 #include "Arduino.h"
 
 FlashPattern::FlashPattern(unsigned int pNumberOfSegments, unsigned int pMaxRows) :
-m_Rows(NULL), m_NumberOfSegments(pNumberOfSegments), m_MaxRows(pMaxRows), m_NumberOfRows(0), m_CurrentRow(0), m_LastStartTimestamp(0)
+mRows(NULL), mNumberOfSegments(pNumberOfSegments), mMaxRows(pMaxRows), mNumberOfRows(0), mCurrentRow(0), mLastStartTimestamp(0)
 {
-m_Rows = new PatternRow_t[m_MaxRows];
+mRows = new PatternRow_t[mMaxRows];
 }
 
 FlashPattern::~FlashPattern()
 {
-    delete[] m_Rows;
+    delete[] mRows;
 }
 
 void FlashPattern::addRow(unsigned int pPattern, unsigned int pDuration)
 {
-    if (m_NumberOfRows < m_MaxRows)
+    if (mNumberOfRows < mMaxRows)
     {
-        m_Rows[m_NumberOfRows].pattern = pPattern;
-        m_Rows[m_NumberOfRows].duration = pDuration;
-        ++m_NumberOfRows;
+        mRows[mNumberOfRows].pattern = pPattern;
+        mRows[mNumberOfRows].duration = pDuration;
+        ++mNumberOfRows;
     }
 
     Serial.print( "Add pattern:");
@@ -37,7 +37,7 @@ void FlashPattern::addRow(unsigned int pPattern, unsigned int pDuration)
     Serial.print(", Duration:");
     Serial.print(pDuration);
     Serial.print(", Number of Rows:");
-    Serial.print(m_NumberOfRows);
+    Serial.print(mNumberOfRows);
     Serial.print("\n");
 
 }
@@ -45,32 +45,32 @@ void FlashPattern::addRow(unsigned int pPattern, unsigned int pDuration)
 void FlashPattern::restartFlashPattern()
 {
 //    Serial.print("Restart pattern");
-    m_CurrentRow = 0;
-    m_LastStartTimestamp = millis();
+    mCurrentRow = 0;
+    mLastStartTimestamp = millis();
 }
 
 void FlashPattern::determineFlashPattern()
 {
     unsigned long lCurrentTimestamp = millis();
 
-    while (lCurrentTimestamp - m_LastStartTimestamp > m_Rows[m_CurrentRow].duration)
+    while (lCurrentTimestamp - mLastStartTimestamp > mRows[mCurrentRow].duration)
     {
-        m_LastStartTimestamp += m_Rows[m_CurrentRow].duration;
-        ++m_CurrentRow;
+        mLastStartTimestamp += mRows[mCurrentRow].duration;
+        ++mCurrentRow;
 
-        if (m_CurrentRow >= m_NumberOfRows)
+        if (mCurrentRow >= mNumberOfRows)
             break;
     }
 }
 
 bool FlashPattern::getCurrentPattern(bool pStart, unsigned int &pCurrentPattern)
 {
-    if (m_CurrentRow < m_NumberOfRows)
+    if (mCurrentRow < mNumberOfRows)
     {
         determineFlashPattern();
     }
 
-    if (m_CurrentRow >= m_NumberOfRows)
+    if (mCurrentRow >= mNumberOfRows)
     {
 //        Serial.print( "return false and pattern 0");
         pCurrentPattern = 0;
@@ -79,7 +79,7 @@ bool FlashPattern::getCurrentPattern(bool pStart, unsigned int &pCurrentPattern)
 
 
 //    Serial.print( "Current pattern:");
-//    Serial.print(m_Rows[m_CurrentRow].pattern);
-    pCurrentPattern = m_Rows[m_CurrentRow].pattern;
+//    Serial.print(mRows[mCurrentRow].pattern);
+    pCurrentPattern = mRows[mCurrentRow].pattern;
     return true;
 }

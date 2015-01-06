@@ -24,71 +24,71 @@
 #include "FlashPattern.h"
 
 LightBar::LightBar(unsigned int pNumberOfSegments, unsigned int pPinArray[], unsigned int pMaxFlashPattern) :
-        m_PinArray(pPinArray), m_NumberOfSegments(pNumberOfSegments), m_PatternRepArray(NULL), m_MaxFlashPattern(
-                pMaxFlashPattern), m_NumberOfFlashPattern(0), m_CurrentPattern(0), m_CurrentRepetition(0), m_Status(OFF)
+        mPinArray(pPinArray), mNumberOfSegments(pNumberOfSegments), mPatternRepArray(NULL), mMaxFlashPattern(
+                pMaxFlashPattern), mNumberOfFlashPattern(0), mCurrentPattern(0), mCurrentRepetition(0), mStatus(OFF)
 {
-    m_PatternRepArray = new FlashPatternRep_t[pMaxFlashPattern];
+    mPatternRepArray = new FlashPatternRep_t[pMaxFlashPattern];
 }
 
 LightBar::~LightBar()
 {
-    delete[] m_PatternRepArray;
+    delete[] mPatternRepArray;
 }
 
 void LightBar::setup(void)
 {
-    for (unsigned int i = 0; i < m_NumberOfSegments; ++i)
+    for (unsigned int i = 0; i < mNumberOfSegments; ++i)
     {
-        pinMode(m_PinArray[i], OUTPUT);
+        pinMode(mPinArray[i], OUTPUT);
     }
 }
 
 void LightBar::addPattern(FlashPattern &pPattern, unsigned int pNumberOfRepetitions)
 {
-    if (m_NumberOfFlashPattern < m_MaxFlashPattern)
+    if (mNumberOfFlashPattern < mMaxFlashPattern)
     {
-        m_PatternRepArray[m_NumberOfFlashPattern].pattern = &pPattern;
-        m_PatternRepArray[m_NumberOfFlashPattern].numberOfRepetitions = pNumberOfRepetitions;
-        ++m_NumberOfFlashPattern;
+        mPatternRepArray[mNumberOfFlashPattern].pattern = &pPattern;
+        mPatternRepArray[mNumberOfFlashPattern].numberOfRepetitions = pNumberOfRepetitions;
+        ++mNumberOfFlashPattern;
     }
 }
 
 void LightBar::setStatus(LightBarStatus_t pStatus)
 {
-    if (m_Status != pStatus && ON == pStatus)
+    if (mStatus != pStatus && ON == pStatus)
     {
         unsigned int lPattern;
-        m_CurrentPattern = 0;
-        m_CurrentRepetition = 0;
-        m_PatternRepArray[m_CurrentPattern].pattern->getCurrentPattern(true, lPattern);
+        mCurrentPattern = 0;
+        mCurrentRepetition = 0;
+        mPatternRepArray[mCurrentPattern].pattern->getCurrentPattern(true, lPattern);
     }
-    m_Status = pStatus;
+    mStatus = pStatus;
 }
 
 void LightBar::repeatPattern()
 {
-    ++m_CurrentRepetition;
-    m_PatternRepArray[m_CurrentPattern].pattern->restartFlashPattern();
+    ++mCurrentRepetition;
+    mPatternRepArray[mCurrentPattern].pattern->restartFlashPattern();
 }
 
 void LightBar::determineNextPattern()
 {
-    ++m_CurrentPattern;
-    m_CurrentRepetition = 0;
-    if (m_CurrentPattern >= m_MaxFlashPattern)
+    ++mCurrentPattern;
+    mCurrentRepetition = 0;
+    if (mCurrentPattern >= mMaxFlashPattern)
     {
-        m_CurrentPattern = 0;
-        m_CurrentRepetition = 0;
-        m_PatternRepArray[m_CurrentPattern].pattern->restartFlashPattern();
+        mCurrentPattern = 0;
+        mCurrentRepetition = 0;
+        mPatternRepArray[mCurrentPattern].pattern->restartFlashPattern();
     }
 }
 
 void LightBar::getCurrentPattern(unsigned int &pattern)
 {
-    while (!m_PatternRepArray[m_CurrentPattern].pattern->getCurrentPattern(false, pattern))
+    while (!mPatternRepArray[mCurrentPattern].pattern->getCurrentPattern(false, pattern))
     {
-        if (m_CurrentRepetition < m_PatternRepArray[m_CurrentPattern].numberOfRepetitions
-                || 0 == m_PatternRepArray[m_CurrentPattern].numberOfRepetitions)
+        if (mCurrentRepetition < mPatternRepArray[mCurrentPattern].numberOfRepetitions
+                || 0 == mPatternRepArray[mCurrentPattern].numberOfRepetitions)
         {
 //            Serial.print("Repeat pattern\n");
             repeatPattern();
@@ -103,11 +103,11 @@ void LightBar::getCurrentPattern(unsigned int &pattern)
 
 void LightBar::switchToPattern(unsigned int pPatternIdx)
 {
-    if (0 <= pPatternIdx && pPatternIdx <m_MaxFlashPattern)
+    if (0 <= pPatternIdx && pPatternIdx <mMaxFlashPattern)
     {
-        m_CurrentPattern = pPatternIdx;
-        m_CurrentRepetition = 0;
-        m_PatternRepArray[m_CurrentPattern].pattern->restartFlashPattern();
+        mCurrentPattern = pPatternIdx;
+        mCurrentRepetition = 0;
+        mPatternRepArray[mCurrentPattern].pattern->restartFlashPattern();
     }
     else
     {
@@ -120,25 +120,25 @@ void LightBar::loop(void)
 {
     unsigned int pattern = 0;
 
-    if (ON == m_Status)
+    if (ON == mStatus)
     {
         getCurrentPattern(pattern);
     }
 //    Serial.print("\nPattern:");
 //    Serial.print(pattern);
 
-    for (unsigned int i = 0; i < m_NumberOfSegments; ++i)
+    for (unsigned int i = 0; i < mNumberOfSegments; ++i)
     {
 //        Serial.print( " i: ");
 //        Serial.print(i);
 //        Serial.print( " Pin: ");
-//        Serial.print(m_PinArray[i]);
+//        Serial.print(mPinArray[i]);
 //        Serial.print( " : patter >> i ");
 //        Serial.print((pattern >> i));
 //        Serial.print( " : HIGH or LOW ");
 //        Serial.print(((pattern >> i) & 0x1) ? HIGH : LOW);
 //        Serial.print( " : ");
-        digitalWrite(m_PinArray[i], ((pattern >> i) & 0x1) ? HIGH : LOW);
+        digitalWrite(mPinArray[i], ((pattern >> i) & 0x1) ? HIGH : LOW);
     }
 }
 
