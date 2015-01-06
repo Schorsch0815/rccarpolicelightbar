@@ -49,6 +49,7 @@ void FlashPattern::restartFlashPattern()
     mLastStartTimestamp = millis();
 }
 
+
 void FlashPattern::determineFlashPattern()
 {
     unsigned long lCurrentTimestamp = millis();
